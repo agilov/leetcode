@@ -1,9 +1,8 @@
 package main
 
-import (
-	"testing"
-)
+import "testing"
 
+// go test -v ./roman_to_integer.go ./roman_to_integer_test.go
 func TestRomanToInt(t *testing.T) {
 	testCases := []struct {
 		roman  string
@@ -26,5 +25,12 @@ func TestRomanToInt(t *testing.T) {
 		if got != tc.expect {
 			t.Errorf("romanToInt(\"%s\"): expected %d, but got %d", tc.roman, tc.expect, got)
 		}
+	}
+}
+
+// go test -bench=. ./roman_to_integer.go ./roman_to_integer_test.go
+func BenchmarkRomanToInt(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		romanToInt("CMIII")
 	}
 }
