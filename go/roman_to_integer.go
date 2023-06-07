@@ -1,7 +1,5 @@
 package main
 
-import "strings"
-
 /*
 Roman to Integer
 
@@ -57,22 +55,39 @@ Input: "MCMXCIV"
 Output: 1994
 Explanation: M = 1000, CM = 900, XC = 90 and IV = 4.
 */
-func romanToInt(s string) int {
-	dict := [13]struct {
-		num string
-		val int
-	}{
-		// First replace compound cases
-		{"IV", 4}, {"IX", 9}, {"XL", 40}, {"XC", 90}, {"CD", 400}, {"CM", 900},
-		// Then replace atomic cases
-		{"I", 1}, {"V", 5}, {"X", 10}, {"L", 50}, {"C", 100}, {"D", 500}, {"M", 1000},
+func getVal(s byte) int {
+	switch s {
+	case 'I':
+		return 1
+	case 'V':
+		return 5
+	case 'X':
+		return 10
+	case 'L':
+		return 50
+	case 'C':
+		return 100
+	case 'D':
+		return 500
+	case 'M':
+		return 1000
+	default:
+		return 0
 	}
+}
+func romanToInt(s string) int {
+	var result, previous, current int
 
-	result := 0
+	for i := len(s) - 1; i >= 0; i-- {
+		current = getVal(s[i])
 
-	for _, e := range dict {
-		result += strings.Count(s, e.num) * e.val
-		s = strings.ReplaceAll(s, e.num, "")
+		if current < previous {
+			result -= current
+		} else {
+			result += current
+		}
+
+		previous = current
 	}
 
 	return result
