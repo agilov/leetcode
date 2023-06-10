@@ -1,18 +1,18 @@
-package main
+package implement_trie_prefix_tree
 
 import "testing"
 
-// go test -v ./implement_trie_prefix_tree_recursive*.go
+// go test -v ./medium/implement_trie_prefix_tree/recursive*.go
 
-type TestCase struct{
+type TestCase struct {
 	insert string
-	arg string
+	arg    string
 	expect bool
 }
 
 // go test -v -run TestInsertSearch ./implement_trie_prefix_tree_recursive*.go
 func TestInsertSearch(t *testing.T) {
-	cases := [...] TestCase {
+	cases := [...]TestCase{
 		{"wort", "wor", false},
 		{"wort", "wort", true},
 		{"sword", "wor", false},
@@ -33,12 +33,12 @@ func TestInsertSearch(t *testing.T) {
 
 // go test -v -run TestInsertPrefix ./implement_trie_prefix_tree_recursive*.go
 func TestInsertPrefix(t *testing.T) {
-	cases := [...] TestCase {
+	cases := [...]TestCase{
 		{"wort", "wor", true},
 		{"sword", "wor", false},
 		{"leet", "le", true},
 	}
-	
+
 	for _, tc := range cases {
 		trie := Constructor()
 		trie.Insert(tc.insert)

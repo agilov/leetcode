@@ -1,4 +1,4 @@
-package main
+package implement_trie_prefix_tree
 
 type Trie struct {
 	links [26]*Trie
