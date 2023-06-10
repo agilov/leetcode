@@ -2,6 +2,9 @@ package main
 
 import "testing"
 
+// go test -v ./roman_to_integer*.go
+
+
 // go test -v ./roman_to_integer.go ./roman_to_integer_test.go
 func TestRomanToInt(t *testing.T) {
 	testCases := []struct {
@@ -28,9 +31,12 @@ func TestRomanToInt(t *testing.T) {
 	}
 }
 
-// go test -bench=. ./roman_to_integer.go ./roman_to_integer_test.go
+// go test -bench=BenchmarkRomanToInt ./roman_to_integer*.go
 func BenchmarkRomanToInt(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		romanToInt("CMIII")
+		romanToInt("MMMCMXCVIII")
+		romanToInt("LVIII")
+		romanToInt("IX")
+		romanToInt("MCMXCI")
 	}
 }
