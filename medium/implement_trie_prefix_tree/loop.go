@@ -1,7 +1,7 @@
 package implement_trie_prefix_tree
 
 type TrieLoop struct {
-	links [26]*Trie
+	links [26]*TrieLoop
 	isEnd bool
 }
 
@@ -10,13 +10,40 @@ func ConstructorTrieLoop() TrieLoop {
 }
 
 func (this *TrieLoop) Insert(word string) {
-	return
+	current := this
+
+	for _, c := range word {
+		if current.links[c-'a'] == nil {
+			current.links[c-'a'] = &TrieLoop{}
+		}
+
+		current = current.links[c-'a']
+	}
+
+	current.isEnd = true
 }
 
 func (this *TrieLoop) Search(word string) bool {
-	return false
+	current := this
+	for _, c := range word {
+		if current.links[c-'a'] == nil {
+			return false
+		}
+		current = current.links[c-'a']
+	}
+
+	return current.isEnd
 }
 
 func (this *TrieLoop) StartsWith(prefix string) bool {
-	return false
+	current := this
+
+	for _, c := range prefix {
+		if current.links[c-'a'] == nil {
+			return false
+		}
+		current = current.links[c-'a']
+	}
+
+	return true
 }
