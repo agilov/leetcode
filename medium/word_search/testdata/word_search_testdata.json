@@ -1,0 +1,7 @@
+[
+    {
+        "board" : ["mbcdefghijkl", "naaaaaaaaaaa", "oaaaaaaaaaaa", "paaaaaaaaaaa", "qaaaaaaaaaaa", "raaaaaaaaaaa", "saaaaaaaaaaa", "taaaaaaaaaaa", "uaaaaaaaaaaa", "vaaaaaaaaaaa", "waaaaaaaaaaa", "xyzaaaaaaaaa"],
+        "words" : ["aaaaaaaaaa","aaaaaaaaab", "pipkamoy", "aaaaajipa"],
+        "expect" : [true, true, false, false]
+    }
+]

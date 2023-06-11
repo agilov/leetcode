@@ -5,6 +5,19 @@ import (
 	"testing"
 )
 
+func convertBoard(board []string) [][]byte {
+	result := make([][]byte, len(board))
+
+	for i, word := range board {
+		result[i] = make([]byte, len(word))
+		for j, c := range word {
+			result[i][j] = byte(c)
+		}
+	}
+
+	return result
+}
+
 // go test -v -run=TestWordSearchII ./hard/word_search_ii/trie*.go
 
 func TestWordSearchII(t *testing.T) {
@@ -19,7 +32,7 @@ func TestWordSearchII(t *testing.T) {
 	}
 
 	for _, d := range data {
-		result := findWords(d.Board, d.Words)
+		result := findWords(convertBoard(d.Board), d.Words)
 
 		if len(d.Expect) != len(result) {
 			t.Fatalf("For board %v and words %v expected %v but got %v", d.Board, d.Words, d.Expect, result)

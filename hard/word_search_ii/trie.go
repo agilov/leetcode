@@ -1,7 +1,9 @@
 package word_search_ii
 
+const MAX int = 12
+
 type TrieNode struct {
-	links [26]*TrieNode
+	links map[byte]*TrieNode
 }
 
 type Trie struct {
@@ -12,55 +14,40 @@ func (t *Trie) add(word string) {
 	current := t.root
 
 	for _, c := range word {
-		index := c - 'a'
-		if current.links[index] == nil {
-			current.links[index] = &TrieNode{}
+		if current.links[byte(c)] == nil {
+			current.links[byte(c)] = newTrieNode()
 		}
-		current = current.links[index]
+		current = current.links[byte(c)]
 	}
 }
 
 func (t *Trie) find(word string) bool {
 	current := t.root
 
-	for _, c := range word {
-		if current.links[c-'a'] == nil {
+	for i := 0; i < len(word); i++ {
+		char := word[i]
+		if current.links[char] == nil {
 			return false
 		}
-		current = current.links[c-'a']
+		current = current.links[word[i]]
 	}
 
 	return true
 }
 
 func newTrie() *Trie {
-	return &Trie{root: &TrieNode{}}
+	return &Trie{root: newTrieNode()}
 }
 
-func convertBoard(board []string) [][]byte {
-	result := make([][]byte, len(board))
-
-	for i, word := range board {
-		result[i] = make([]byte, len(word))
-		for j, c := range word {
-			result[i][j] = byte(c)
-		}
-	}
-
-	return result
+func newTrieNode() *TrieNode {
+	return &TrieNode{links: make(map[byte]*TrieNode)}
 }
 
-func findWords(board []string, words []string) []string {
+func findWords(board [][]byte, words []string) []string {
 	trie := newTrie()
-	brd := convertBoard(board)
-
 	var result []string
 
-	for y := 0; y < len(brd); y++ {
-		for x := 0; x < len(brd[0]); x++ {
-			insert(copyBoard(brd), "", trie, x, y, 0)
-		}
-	}
+	seed(board, trie)
 
 	for _, word := range words {
 		if trie.find(word) {
@@ -71,48 +58,46 @@ func findWords(board []string, words []string) []string {
 	return result
 }
 
-func copyBoard(board [][]byte) [][]byte {
-	result := make([][]byte, len(board))
-	for i := range board {
-		result[i] = make([]byte, len(board[i]))
-		copy(result[i], board[i])
+func seed(board [][]byte, trie *Trie) {
+	m, n := len(board), len(board[0])
+	var current *TrieNode = trie.root
+
+	var dfs func(r, c, i int)
+	dfs = func(r, c, i int) {
+		if i >= MAX || r < 0 || c < 0 || r >= m || c >= n || board[r][c] == '.' {
+			return
+		}
+
+		next := i + 1
+
+		if next == MAX {
+			return
+		}
+
+		char := board[r][c]
+
+		if current.links[char] == nil {
+			current.links[char] = newTrieNode()
+		}
+
+		prev := current
+		current = current.links[char]
+
+		board[r][c] = '.'
+
+		dfs(r+1, c, next)
+		dfs(r-1, c, next)
+		dfs(r, c+1, next)
+		dfs(r, c-1, next)
+
+		current = prev
+		board[r][c] = char
 	}
-	return result
-}
 
-// Inserting board to trie from concrete letter.
-// Each letter have at most 4 neighbours, if neigbour is not inserted before - it marged as inserted after insertion
-// insertion stops when there is no not-inserted letters left
-func insert(board [][]byte, prefix string, trie *Trie, x int, y int, level int) {
-
-	if outOfBounds(&board, x, y) || level > 10 {
-		return
+	for row := 0; row < m; row++ {
+		for col := 0; col < n; col++ {
+			dfs(row, col, 0)
+			current = trie.root
+		}
 	}
-
-	if board[y][x] == 255 {
-		return
-	}
-
-	toInsert := prefix + string(board[y][x])
-
-	trie.add(toInsert)
-
-	board[y][x] = 255
-
-	variants := [][2]int{
-		[2]int{x + 1, y},
-		[2]int{x - 1, y},
-		[2]int{x, y + 1},
-		[2]int{x, y - 1},
-	}
-
-	for _, variant := range variants {
-		insert(copyBoard(board), toInsert, trie, variant[0], variant[1], level + 1)
-	}
-}
-
-func outOfBounds(board *[][]byte, x, y int) bool {
-	var height, widht = len(*board), len((*board)[0])
-
-	return x >= widht || x < 0 || y >= height || y < 0
 }
