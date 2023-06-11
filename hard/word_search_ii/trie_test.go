@@ -24,7 +24,7 @@ func TestWordSearchII(t *testing.T) {
 		if len(d.Expect) != len(result) {
 			t.Fatalf("For board %v and words %v expected %v but got %v", d.Board, d.Words, d.Expect, result)
 		}
-		
+
 		for i := range d.Expect {
 			if d.Expect[i] != result[i] {
 				t.Fatalf("For board %v and words %v expected %v but got %v", d.Board, d.Words, d.Expect, result)

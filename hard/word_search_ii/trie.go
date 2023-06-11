@@ -37,7 +37,6 @@ func newTrie() *Trie {
 	return &Trie{root: &TrieNode{}}
 }
 
-
 func findWords(board []string, words []string) []string {
 	trie := newTrie()
 

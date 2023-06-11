@@ -4,9 +4,10 @@ type cell struct {
 	letter    byte
 	isVisited bool
 }
-func outBounds(board *[][]cell, x,y int) bool {
+
+func outBounds(board *[][]cell, x, y int) bool {
 	var height, widht = len(*board), len((*board)[0])
-	
+
 	return x >= widht || x < 0 || y >= height || y < 0
 }
 
@@ -23,4 +24,3 @@ func scan(letter byte, board *[]string) *[][2]int {
 
 	return &result
 }
-

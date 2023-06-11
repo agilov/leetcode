@@ -1,12 +1,11 @@
 package word_search_ii
 
-
 func findWordsLoop(board []string, words []string) []string {
 
 	var result []string
 
 	for _, word := range words {
-	
+
 		points := scan(word[0], &board)
 		for _, start := range *points {
 			b := setupBoard(&board)
@@ -29,16 +28,16 @@ func search(word string, board *[][]cell, x, y int) bool {
 	if outBounds(board, x, y) {
 		return false
 	}
-	
+
 	visited := (*board)[y][x].isVisited
 	letter := (*board)[y][x].letter
-	
+
 	if visited || letter != word[0] {
 		return false
 	}
-	
+
 	(*board)[y][x].isVisited = true
-	
+
 	variants := [][2]int{
 		[2]int{x + 1, y},
 		[2]int{x - 1, y},
@@ -54,7 +53,6 @@ func search(word string, board *[][]cell, x, y int) bool {
 	(*board)[y][x].isVisited = false
 	return false
 }
-
 
 func setupBoard(board *[]string) *[][]cell {
 	result := make([][]cell, len(*board))

@@ -24,16 +24,16 @@ func TestWordSearchIILoop(t *testing.T) {
 		if len(d.Expect) != len(result) {
 			t.Fatalf("For board %v and words %v expected %v but got %v", d.Board, d.Words, d.Expect, result)
 		}
-		
+
 		for _, word := range d.Expect {
 			found := false
 			for _, w := range result {
 				if word == w {
 					found = true
 					break
-				} 
+				}
 			}
-			
+
 			if !found {
 				t.Fatalf("For board %v and words %v expected %v but got %v", d.Board, d.Words, d.Expect, result)
 			}
