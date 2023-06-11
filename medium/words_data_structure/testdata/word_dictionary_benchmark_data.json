@@ -1,0 +1,44 @@
+[
+    {
+        "operations": [
+            "addWord",
+            "addWord",
+            "addWord",
+            "search",
+            "search",
+            "search",
+            "search",
+            "addWord",
+            "search",
+            "search",
+            "search",
+            "search",
+            "addWord",
+            "search",
+            "search",
+            "search",
+            "search",
+            "search"
+        ],
+        "arguments": [
+            "bad",
+            "dad",
+            "mad",
+            "pad",
+            "bad",
+            ".ad",
+            "b..",
+            "longword",
+            "lon.word",
+            "lo..word",
+            ".ong.ord",
+            ".longwor",
+            "longsword",
+            "long.word",
+            "long.wor.",
+            "long.wor..",
+            "longsword",
+            "........."
+        ]
+    }
+]

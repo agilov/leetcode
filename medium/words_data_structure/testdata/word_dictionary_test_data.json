@@ -1,0 +1,75 @@
+[
+    {
+        "operations": [
+            "WordDictionary",
+            "addWord",
+            "addWord",
+            "addWord",
+            "search",
+            "search",
+            "search",
+            "search"
+        ],
+        "arguments": [
+            "",
+            "bad",
+            "dad",
+            "mad",
+            "pad",
+            "bad",
+            ".ad",
+            "b.."
+        ],
+        "expectations": [
+            null,
+            null,
+            null,
+            null,
+            false,
+            true,
+            true,
+            true
+        ]
+    },
+    {
+        "operations": [
+            "WordDictionary",
+            "addWord",
+            "search",
+            "search",
+            "search",
+            "search",
+            "addWord",
+            "search",
+            "search",
+            "search",
+            "search"
+        ],
+        "arguments": [
+            "",
+            "longword",
+            "lon.word",
+            "lo..word",
+            ".ong.ord",
+            ".longwor",
+            "longsword",
+            "long.word",
+            "long.wor.",
+            "long.wor..",
+            "longsword"
+        ],
+        "expectations": [
+            null,
+            null,
+            true,
+            true,
+            true,
+            false,
+            null,
+            true,
+            true,
+            false,
+            true
+        ]
+    }
+]

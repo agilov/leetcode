@@ -1,0 +1,32 @@
+[
+    {
+        "board" : ["ab","cd"],
+        "words" : ["abd", "abc"],
+        "expect" : ["abd"]
+    },
+    {
+        "board" : ["ab","cd"],
+        "words" : ["abcb"],
+        "expect" : []
+    },
+    {
+        "board" : ["oaan","etae","ihkr","iflv"],
+        "words" : ["oath","pea","eat","rain"],
+        "expect" : ["eat","oath"]
+    },
+    {
+        "board" : ["jopka","rotik","akakk","kakat", "aaaaa"],
+        "words" : ["jopka","rotik","akakk","kakat", "jraka", "jortik", "aa", "a", "takak", "opi"],
+        "expect" : ["jopka","rotik","akakk","kakat", "jraka", "aa", "a", "takak"]
+    },
+    {
+        "board" : ["oabn","otae", "ahkr", "aflv"],
+        "words" : ["oa","oaa"],
+        "expect" : ["oa","oaa"]
+    },
+    {
+        "board" : ["a","a"],
+        "words" : ["aa", "aaa"],
+        "expect" : ["aa"]
+    }
+]
