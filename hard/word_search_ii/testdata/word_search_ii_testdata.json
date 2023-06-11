@@ -28,5 +28,10 @@
         "board" : ["a","a"],
         "words" : ["aa", "aaa"],
         "expect" : ["aa"]
+    },
+    {
+        "board" : ["mbcdefghijkl", "naaaaaaaaaaa", "oaaaaaaaaaaa", "paaaaaaaaaaa", "qaaaaaaaaaaa", "raaaaaaaaaaa", "saaaaaaaaaaa", "taaaaaaaaaaa", "uaaaaaaaaaaa", "vaaaaaaaaaaa", "waaaaaaaaaaa", "xyzaaaaaaaaa"],
+        "words" : ["mbcdefgh", "naaaaaa", "jopa"],
+        "expect" : ["mbcdefgh", "naaaaaa"]
     }
 ]

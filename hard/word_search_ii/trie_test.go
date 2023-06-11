@@ -25,14 +25,20 @@ func TestWordSearchII(t *testing.T) {
 			t.Fatalf("For board %v and words %v expected %v but got %v", d.Board, d.Words, d.Expect, result)
 		}
 
-		for i := range d.Expect {
-			if d.Expect[i] != result[i] {
+		for _, word := range d.Expect {
+			found := false
+			for _, w := range result {
+				if word == w {
+					found = true
+					break
+				}
+			}
+
+			if !found {
 				t.Fatalf("For board %v and words %v expected %v but got %v", d.Board, d.Words, d.Expect, result)
 			}
 		}
 	}
-
-	t.Fatal(data)
 }
 
 // go test -v -run=TestTrieImpl ./hard/word_search_ii/trie*.go
