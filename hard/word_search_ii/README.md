@@ -1,6 +1,6 @@
-# LeetCode Problem: Word Search II
+# Word Search II
 
-## Problem Description:
+## Description:
 
 Given a 2D board and a list of words from the dictionary, find all words in the board.
 
