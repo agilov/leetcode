@@ -1,0 +1,7 @@
+[
+    {
+        "board" : ["bea","oer", "ooo"],
+        "words" : ["bee", "beer", "bear", "boar", "boor"],
+        "expect" : ["bee", "beer", "bear"]
+    }
+]

@@ -1,33 +1,53 @@
 package word_search_ii
 
 type TrieNode struct {
-	links map[byte]*TrieNode
+	isEnd      bool
+	word       string
+	liknsCount uint8
+	links      [26]*TrieNode
 }
 
 type Trie struct {
 	root *TrieNode
 }
 
+func (tn *TrieNode) has(char byte) bool {
+	return tn.get(char) != nil
+}
+
+func (tn *TrieNode) get(char byte) *TrieNode {
+	return tn.links[char-'a']
+}
+
+func (tn *TrieNode) getIsEnd(char byte) bool {
+	return tn.links[char-'a'].isEnd
+}
+
 func (t *Trie) add(word string) {
 	current := t.root
 
-	for _, c := range word {
-		if current.links[byte(c)] == nil {
-			current.links[byte(c)] = newTrieNode()
+	for i := 0; i < len(word); i++ {
+		idx := word[i] - 'a'
+		if current.links[idx] == nil {
+			current.links[idx] = newTrieNode()
+			current.liknsCount++
 		}
-		current = current.links[byte(c)]
+		current = current.links[idx]
 	}
+
+	current.isEnd = true
+	current.word = word
 }
 
 func (t *Trie) find(word string) bool {
 	current := t.root
 
 	for i := 0; i < len(word); i++ {
-		char := word[i]
-		if current.links[char] == nil {
+		idx := word[i] - 'a'
+		if current.links[idx] == nil {
 			return false
 		}
-		current = current.links[word[i]]
+		current = current.links[idx]
 	}
 
 	return true
@@ -38,5 +58,5 @@ func newTrie() *Trie {
 }
 
 func newTrieNode() *TrieNode {
-	return &TrieNode{links: make(map[byte]*TrieNode)}
+	return &TrieNode{links: [26]*TrieNode{}, isEnd: false, liknsCount: 0}
 }

@@ -6,3 +6,6 @@ This is my leetcode practice in different languages.
 
 ## Medium
 - [Words data structure](./medium/words_data_structure/README.md)
+
+## Hard
+- [Words search II](./hard/word_search_ii/README.md)

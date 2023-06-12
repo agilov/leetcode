@@ -2,7 +2,7 @@ package word_search_ii
 
 const MAX int = 12
 
-func findWords(board [][]byte, words []string) []string {
+func findWordsBoardToTrie(board [][]byte, words []string) []string {
 	trie := newTrie()
 	var result []string
 
@@ -35,13 +35,14 @@ func seed(board [][]byte, trie *Trie) {
 		}
 
 		char := board[r][c]
+		charidx := char - 'a'
 
-		if current.links[char] == nil {
-			current.links[char] = newTrieNode()
+		if current.links[charidx] == nil {
+			current.links[charidx] = newTrieNode()
 		}
 
 		prev := current
-		current = current.links[char]
+		current = current.links[charidx]
 
 		board[r][c] = '.'
 

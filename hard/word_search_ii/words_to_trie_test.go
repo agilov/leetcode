@@ -5,8 +5,8 @@ import (
 	"testing"
 )
 
-// go test -v -run=TestWordSearchIIBoardToTrie ./hard/word_search_ii/*.go
-func TestWordSearchIIBoardToTrie(t *testing.T) {
+// go test -v -run=TestFindWordsWordsToTrie ./hard/word_search_ii/*.go
+func TestFindWordsWordsToTrie(t *testing.T) {
 	data, err := helpers.TestDataProvider[struct {
 		Board  []string `json:"board"`
 		Words  []string `json:"words"`
@@ -18,7 +18,7 @@ func TestWordSearchIIBoardToTrie(t *testing.T) {
 	}
 
 	for _, d := range data {
-		result := findWordsBoardToTrie(convertBoard(d.Board), d.Words)
+		result := findWords(convertBoard(d.Board), d.Words)
 
 		if len(d.Expect) != len(result) {
 			t.Fatalf("For board %v and words %v expected %v but got %v", d.Board, d.Words, d.Expect, result)
@@ -40,8 +40,8 @@ func TestWordSearchIIBoardToTrie(t *testing.T) {
 	}
 }
 
-// go test -v -run=^$ -bench=BenchmarkFindWordsBoardToTrie ./hard/word_search_ii/*.go
-func BenchmarkFindWordsBoardToTrie(b *testing.B) {
+// go test -v -run=^$ -bench=BenchmarkFindWordsWordsToTrie ./hard/word_search_ii/*.go
+func BenchmarkFindWordsWordsToTrie(b *testing.B) {
 	data, _ := helpers.TestDataProvider[struct {
 		Board  []string `json:"board"`
 		Words  []string `json:"words"`
@@ -50,6 +50,6 @@ func BenchmarkFindWordsBoardToTrie(b *testing.B) {
 	d := data[0]
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
-		findWordsBoardToTrie(convertBoard(d.Board), d.Words)
+		findWords(convertBoard(d.Board), d.Words)
 	}
 }
