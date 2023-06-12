@@ -24,3 +24,16 @@ func scan(letter byte, board *[]string) *[][2]int {
 
 	return &result
 }
+
+func convertBoard(board []string) [][]byte {
+	result := make([][]byte, len(board))
+
+	for i, word := range board {
+		result[i] = make([]byte, len(word))
+		for j, c := range word {
+			result[i][j] = byte(c)
+		}
+	}
+
+	return result
+}

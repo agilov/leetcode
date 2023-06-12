@@ -5,8 +5,9 @@ import (
 	"testing"
 )
 
-// go test -v -run=TestWordSearchIILoop ./hard/word_search_ii/*.go
-func TestWordSearchIILoop(t *testing.T) {
+// go test -v -run=TestWordSearchIIBoardToTrie ./hard/word_search_ii/*.go
+
+func TestWordSearchIIBoardToTrie(t *testing.T) {
 	data, err := helpers.TestDataProvider[struct {
 		Board  []string `json:"board"`
 		Words  []string `json:"words"`
@@ -18,7 +19,7 @@ func TestWordSearchIILoop(t *testing.T) {
 	}
 
 	for _, d := range data {
-		result := findWordsLoop(d.Board, d.Words)
+		result := findWords(convertBoard(d.Board), d.Words)
 
 		if len(d.Expect) != len(result) {
 			t.Fatalf("For board %v and words %v expected %v but got %v", d.Board, d.Words, d.Expect, result)
