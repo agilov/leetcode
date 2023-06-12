@@ -26,10 +26,9 @@ func int2string(num int) string {
 	}
 
 	result := []byte{}
-	i := 0
-	for ; num > 0; i++ {
+
+	for ; num > 0; num /= 10 {
 		result = append([]byte{mapping[num%10]}, result...)
-		num /= 10
 	}
 
 	return string(result)
