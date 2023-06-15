@@ -9,6 +9,12 @@ func calculateTime(keyboard string, word string) int {
 
 	result := 0
 	cur := 0
+	var abs = func(n int) int {
+		if n < 0 {
+			return -n
+		}
+		return n
+	}
 
 	for _, c := range []byte(word) {
 		idx := mapping[c-'a']
@@ -17,11 +23,4 @@ func calculateTime(keyboard string, word string) int {
 	}
 
 	return result
-}
-
-func abs(n int) int {
-	if n < 0 {
-		return -n
-	}
-	return n
 }
